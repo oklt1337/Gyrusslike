@@ -488,9 +488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e2b8f144b513344971427748ee7095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angularSpeed: 1
+  projectilePrefab: {fileID: 4774633236096967335, guid: fb44786c22f15c84e9939bba3ff57c76, type: 3}
+  angularSpeed: 2
   circleRad: 4
-  fixedPoint: {fileID: 1515678295}
 --- !u!1 &1667233493
 GameObject:
   m_ObjectHideFlags: 0

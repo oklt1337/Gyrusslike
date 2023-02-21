@@ -13,6 +13,9 @@ namespace _Project.Scripts
         private float _currentAngle;
         private float _angularSpeed;
         private const float MaxCircleRad = 11.0f;
+        private bool _dead;
+
+        public float CircleRad => circleRad;
 
         public event Action<Enemy> OnDeath;
 
@@ -23,6 +26,8 @@ namespace _Project.Scripts
         
         private void Update()
         {
+            if (_dead)
+                return;
             if (circleRad >= MaxCircleRad)
                 Die();
             
@@ -44,6 +49,7 @@ namespace _Project.Scripts
 
         private void Die()
         {
+            _dead = true;
             OnDeath?.Invoke(this);
             Destroy(gameObject);
         }

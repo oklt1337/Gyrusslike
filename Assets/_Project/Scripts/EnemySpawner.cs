@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +8,25 @@ namespace _Project.Scripts
 {
     public class EnemySpawner : MonoBehaviour
     {
+        public static EnemySpawner Instance;
+        
         [SerializeField] private GameObject enemyPrefab;
         [SerializeField] private Vector2Int spawnRange = new(2, 10);
         [SerializeField] private float reSpawnDelay = 2f;
         [SerializeField] private float spawnDelay = .2f;
-        
+
         private readonly List<Enemy> _enemies = new();
         private Coroutine _spawnCo;
+
+        public event Action<float> OnEnemyRemoved;
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+                Destroy(this);
+            else
+                Instance = this;
+        }
 
         private void Start()
         {
@@ -37,7 +50,10 @@ namespace _Project.Scripts
         private void RemoveEnemy(Enemy enemy)
         {
             if (_enemies.Contains(enemy))
+            {
+                OnEnemyRemoved?.Invoke(enemy.CircleRad);
                 _enemies.Remove(enemy);
+            }
 
             if (_enemies.Count > 0)
                 return;

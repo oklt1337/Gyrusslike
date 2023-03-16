@@ -37,14 +37,14 @@ namespace _Project.Scripts
         
         private void Move()
         {
-            _currentAngle += _angularSpeed * Time.deltaTime;
-            var offset = new Vector2 (Mathf.Sin (_currentAngle), Mathf.Cos (_currentAngle)) * circleRad;
+            _currentAngle += _angularSpeed;
+            var offset = new Vector2 (Mathf.Sin (_currentAngle), Mathf.Cos (_currentAngle)) * (circleRad * Time.deltaTime);
             transform.position = ((Vector2) _fixedPoint) + offset;
         }
 
         private void IncreaseRadius()
         {
-            circleRad += Time.deltaTime * circleRadMultiplier;
+            circleRad += circleRadMultiplier;
         }
 
         private void Die()

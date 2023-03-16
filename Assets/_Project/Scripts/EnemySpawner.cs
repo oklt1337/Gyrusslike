@@ -44,7 +44,7 @@ namespace _Project.Scripts
             var enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity).GetComponent<Enemy>();
             enemy.Init(direction);
             enemy.OnDeath += RemoveEnemy;
-            _enemies.Add(enemy); 
+            _enemies.Add(enemy);
         }
 
         private void RemoveEnemy(Enemy enemy)
